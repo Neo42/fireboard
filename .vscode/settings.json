@@ -2,6 +2,7 @@
   "conventionalCommits.scopes": [
     "docs",
     "ide",
-    "app"
+    "app",
+    "components"
   ]
 }
