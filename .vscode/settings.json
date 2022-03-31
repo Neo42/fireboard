@@ -1,6 +1,7 @@
 {
   "conventionalCommits.scopes": [
     "docs",
-    "ide"
+    "ide",
+    "app"
   ]
 }
