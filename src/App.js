@@ -1,10 +1,15 @@
-import {BrowserRouter as Router} from 'react-router-dom'
+import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'
+import {Dashboard} from './components/dashboard/dashboard'
+import {NavBar} from './components/layout/navbar'
 
 function App() {
   return (
     <Router>
       <div className="App">
-        <h1>Fireboard</h1>
+        <NavBar />
+        <Routes>
+          <Route path="/" element={<Dashboard />} />
+        </Routes>
       </div>
     </Router>
   )
