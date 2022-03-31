@@ -1,6 +1,6 @@
 import {NavLink} from 'react-router-dom'
 
-export function SignedInLinks() {
+export function AuthenticatedLinks() {
   return (
     <ul className="right">
       <li>

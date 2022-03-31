@@ -1,6 +1,6 @@
 import {Link} from 'react-router-dom'
-import {SignedInLinks} from './signed-in-links'
-import {SignedOutLinks} from './signed-out-links'
+import {AuthenticatedLinks} from './authenticated-links'
+import {UnauthenticatedLinks} from './unauthenticated-links'
 
 export function NavBar() {
   return (
@@ -9,8 +9,8 @@ export function NavBar() {
         <Link to="/" className="brand-logo">
           Fireboard
         </Link>
-        <SignedInLinks />
-        <SignedOutLinks />
+        <AuthenticatedLinks />
+        <UnauthenticatedLinks />
       </div>
     </nav>
   )

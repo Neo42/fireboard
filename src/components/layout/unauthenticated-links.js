@@ -1,6 +1,6 @@
 import {NavLink} from 'react-router-dom'
 
-export function SignedOutLinks() {
+export function UnauthenticatedLinks() {
   return (
     <ul className="right">
       <li>

@@ -1,3 +1,3 @@
 export {NavBar} from './navbar'
-export {SignedInLinks} from './authenticated-links'
-export {SignedOutLinks} from './unauthenticated-links'
+export {AuthenticatedLinks} from './authenticated-links'
+export {UnauthenticatedLinks} from './unauthenticated-links'
