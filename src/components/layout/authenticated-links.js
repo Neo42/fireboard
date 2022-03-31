@@ -4,7 +4,7 @@ export function AuthenticatedLinks() {
   return (
     <ul className="right">
       <li>
-        <NavLink to="/">New Product</NavLink>
+        <NavLink to="/new">New Product</NavLink>
       </li>
       <li>
         <NavLink to="/">Log Out</NavLink>
