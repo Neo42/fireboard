@@ -1,7 +1,5 @@
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'
-import {Dashboard} from 'components/dashboard/dashboard'
-import {NavBar} from 'components/layout/navbar'
-import {ProductDetails} from 'components/products/details'
+import {Dashboard, NavBar, ProductDetails, Login, Signup} from 'components'
 
 function App() {
   return (
@@ -11,6 +9,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Dashboard />} />
           <Route path="/product/:id" element={<ProductDetails />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
         </Routes>
       </div>
     </Router>
