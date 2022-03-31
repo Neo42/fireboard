@@ -15,11 +15,11 @@ coding challenge.
 
 #### Auth
 
-- [ ] Email & password input
-- [ ] Login button
+- [x] ~~_Email & password input_~~ [2022-03-31]
+- [x] ~~_Login button_~~ [2022-03-31]
 - [ ] Alert message on login error
-- [ ] Responsive page for mobile & desktop
-- [ ] Redirect to dashboard
+- [x] ~~_Responsive page for mobile & desktop_~~ [2022-03-31]
+- [ ] Redirects to dashboard on login
 
 #### Dashboard
 

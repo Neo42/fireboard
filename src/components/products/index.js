@@ -1,3 +1,5 @@
+export {NewProduct} from './new'
 export {ProductDetails} from './details'
 export {ProductList} from './list'
 export {ProductSummary} from './summary'
+export {ProductImage} from './image'
