@@ -4,14 +4,14 @@ export function SignedInLinks() {
   return (
     <ul className="right">
       <li>
-        <NavLink to="/">New Item</NavLink>
+        <NavLink to="/">New Product</NavLink>
       </li>
       <li>
         <NavLink to="/">Log Out</NavLink>
       </li>
       <li>
         <NavLink to="/" className="btn btn-floating pink lighten-1">
-          NN
+          N
         </NavLink>
       </li>
     </ul>
