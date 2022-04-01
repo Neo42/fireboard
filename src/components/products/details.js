@@ -36,11 +36,11 @@ export function ProductDetails() {
   }, [id])
 
   const handleSubmit = (e) => {
+    e.preventDefault()
     if (!title || !description) {
       alert('Required field missing.')
       return
     }
-    e.preventDefault()
     const productRef = doc(db, 'products', id)
 
     updateDoc(productRef, {title, description}).catch(console.error)
@@ -52,21 +52,16 @@ export function ProductDetails() {
 
     const storageRef = ref(storage, `/images/${Date.now()}${file?.name}`)
     const uploadImage = uploadBytesResumable(storageRef, file)
-    uploadImage.on(
-      'state_changed',
-      (snapshot) => console.log(snapshot.bytesTransferred),
-      console.log,
-      () => {
-        getDownloadURL(uploadImage.snapshot.ref).then((url) => {
-          updateDoc(productRef, {
-            title,
-            description,
-            image: url,
-          }).catch(console.error)
-          navigate('/')
-        })
-      },
-    )
+    uploadImage.on('state_changed', null, console.log, () => {
+      getDownloadURL(uploadImage.snapshot.ref).then((url) => {
+        updateDoc(productRef, {
+          title,
+          description,
+          image: url,
+        }).catch(console.error)
+        navigate('/')
+      })
+    })
   }
 
   const handleDelete = async () => {
