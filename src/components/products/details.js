@@ -111,11 +111,14 @@ export function ProductDetails() {
           previewUrl={previewUrl}
           setPreviewUrl={setPreviewUrl}
         />
-        <div className="input-field">
-          <button className="btn pink lighten-1" type="submit">
+        <div className="input-field row">
+          <button className="btn pink lighten-1 col s12 m3" type="submit">
             Update Product
           </button>
-          <button className="btn red darken-3 right" onClick={handleDelete}>
+          <button
+            className="btn red darken-3 right col s12 m3"
+            onClick={handleDelete}
+          >
             Delete Product
           </button>
         </div>

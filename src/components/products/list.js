@@ -1,11 +1,10 @@
 import React from 'react'
 import {collection, onSnapshot, orderBy, query} from 'firebase/firestore'
-import {useProducts} from 'contexts/products'
 import {db} from 'firebase-config'
 import {ProductSummary} from './summary'
 
 export function ProductList() {
-  const [products, setProducts] = useProducts()
+  const [products, setProducts] = React.useState(null)
 
   React.useEffect(() => {
     const getProducts = async () => {
