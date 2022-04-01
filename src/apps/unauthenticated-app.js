@@ -10,7 +10,7 @@ export function UnauthenticatedApp() {
   const [email, setEmail] = React.useState('')
   const [password, setPassword] = React.useState('')
   const [error, setError] = React.useState(null)
-  const [isSignup, setIsSignup] = React.useState(true)
+  const [isSignup, setIsSignup] = React.useState(false)
   const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
