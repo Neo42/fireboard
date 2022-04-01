@@ -1,9 +1,9 @@
-import {auth} from 'firebase-config'
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from 'firebase/auth'
 import React from 'react'
+import {auth} from 'firebase-config'
 
 export function UnauthenticatedApp() {
   const [email, setEmail] = React.useState('')

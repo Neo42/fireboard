@@ -23,14 +23,17 @@ coding challenge.
 
 #### Dashboard
 
-- [ ] Data fetched from firebase database
 - [x] ~~_Product list_~~ [2022-04-01]
 - [x] ~~_Product item_~~ [2022-04-01]
   - [x] ~~_description, title & image_~~ [2022-04-01]
-- [ ] CRUD interface with backend data interactions
 - [x] ~~_Sign out button:_~~ [2022-04-01]
   - [x] ~~_Redirects to sign-in page_~~ [2022-04-01]
 - [x] ~~_Responsive page for mobile & desktop_~~ [2022-04-01]
+- [ ] Data fetched from firebase database
+- [ ] CRUD interface with backend data interactions
+  - [ ] title
+  - [ ] description
+  - [ ] image
 
 #### Bonus
 

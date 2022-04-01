@@ -1,6 +1,8 @@
 import {initializeApp} from 'firebase/app'
 import {getAuth} from 'firebase/auth'
+import {getFirestore} from 'firebase/firestore'
 
+// Exposed for demo purposes. Not recommended in production.
 const firebaseConfig = {
   apiKey: 'AIzaSyA1uscG-MwhyMaxE1JByjKJ9NwxalxJErk',
   authDomain: 'fireboard-80213.firebaseapp.com',
@@ -13,3 +15,4 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig)
 export const auth = getAuth(app)
+export const db = getFirestore(app)

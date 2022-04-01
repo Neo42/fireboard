@@ -33,9 +33,7 @@ export function NewProduct() {
         </div>
         <ProductImage setImage={setImage} />
         <div className="input-field">
-          <button className="btn pink lighten-1 z-depth-0">
-            Create Product
-          </button>
+          <button className="btn pink lighten-1">Create Product</button>
         </div>
       </form>
     </div>
