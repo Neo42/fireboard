@@ -1,23 +1,57 @@
-import {useParams} from 'react-router-dom'
+import {ProductImage} from 'components/products/image'
+import {useProducts} from 'contexts/products'
+import {db, storage} from 'firebase-config'
+import {deleteDoc, doc} from 'firebase/firestore'
+import {deleteObject, ref} from 'firebase/storage'
+import {useNavigate, useParams} from 'react-router-dom'
 
 export function ProductDetails() {
   const {id} = useParams()
+  const [products] = useProducts()
+  const product = products?.find((product) => product?.id === id)
+  const navigate = useNavigate()
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+  }
+
+  const handleDelete = async () => {
+    try {
+      await deleteDoc(doc(db, `products`, id))
+      const storageRef = ref(storage, product?.image)
+      await deleteObject(storageRef)
+      navigate('/')
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
   return (
-    <div className="container section product-details">
-      <div className="card z-depth-0">
-        <div className="card-content">
-          <span className="card-title">Product Title - {id}</span>
-          <p>
-            Officia mollitia esse. Voluptas odit velit est. Ullam ex excepturi
-            tempore. Debitis minima neque ducimus assumenda voluptatibus iste
-            aliquid aliquam. Et quo et corporis ullam rerum quas.
-          </p>
+    <div className="container">
+      <form onSubmit={handleSubmit} className="white">
+        <h5 className="grey-text text-darken-3">Product Details</h5>
+        <div className="input-field">
+          <label htmlFor="title">Title</label>
+          <input type="text" id="text" onChange={() => {}} />
         </div>
-        <div className="card-action grey lighten-4 grey-text">
-          <div>Posted by Neo42</div>
-          <div>March 31th, 4:57pm</div>
+        <div className="input-field">
+          <label htmlFor="description">Product Description</label>
+          <textarea
+            id="description"
+            className="materialize-textarea"
+            onChange={() => {}}
+          />
         </div>
-      </div>
+        <ProductImage setImage={() => {}} />
+        <div className="input-field">
+          <button className="btn pink lighten-1" type="submit">
+            Create Product
+          </button>
+          <button className="btn red darken-3 right" onClick={handleDelete}>
+            Delete Product
+          </button>
+        </div>
+      </form>
     </div>
   )
 }
