@@ -1,14 +1,44 @@
-import {ProductImage} from 'components'
+import {addDoc, collection, Timestamp} from 'firebase/firestore'
 import React from 'react'
+import {useNavigate} from 'react-router-dom'
+import {ProductImage} from 'components'
+import {getDownloadURL, ref, uploadBytesResumable} from 'firebase/storage'
+import {db, storage} from 'firebase-config'
 
 export function NewProduct() {
   const [title, setTitle] = React.useState('')
   const [description, setDescription] = React.useState('')
-  const [image, setImage] = React.useState('')
+  const [image, setImage] = React.useState(null)
+  const navigate = useNavigate()
 
   const handleSubmit = (e) => {
+    if (!title || !description || !image) {
+      alert('Required field missing.')
+      return
+    }
     e.preventDefault()
-    console.log({title, description, image})
+
+    const storageRef = ref(storage, `/images/${Date.now()}${image.name}`)
+    const uploadImage = uploadBytesResumable(storageRef, image)
+
+    uploadImage.on(
+      'state_changed',
+      (snapshot) => console.log(snapshot.bytesTransferred),
+      console.log,
+      () => {
+        getDownloadURL(uploadImage.snapshot.ref).then((url) => {
+          const productRef = collection(db, 'products')
+          addDoc(productRef, {
+            title,
+            description,
+            image: url,
+            createdAt: Timestamp.now().toDate(),
+          })
+            .then(() => navigate('/'))
+            .catch(console.error)
+        })
+      },
+    )
   }
 
   return (
@@ -20,6 +50,7 @@ export function NewProduct() {
           <input
             type="text"
             id="text"
+            value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
         </div>
@@ -28,6 +59,7 @@ export function NewProduct() {
           <textarea
             id="description"
             className="materialize-textarea"
+            value={description}
             onChange={(e) => setDescription(e.target.value)}
           />
         </div>

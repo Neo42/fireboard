@@ -1,11 +1,21 @@
-export function ProductSummary() {
+import {Link} from 'react-router-dom'
+
+export function ProductSummary({product}) {
   return (
-    <div className="card product-summary">
-      <div className="card-content grey-text text-darken-3">
-        <span className="card-title">Product Title</span>
-        <p>Created by Neo42</p>
-        <p className="grey-text">Mar 31th, 4:30pm</p>
+    <Link to={`/product/${product?.id}`}>
+      <div className="card hoverable product-summary">
+        <div className="card-image">
+          <img
+            src={product?.image}
+            alt={product?.title}
+            style={{objectFit: 'cover'}}
+          />
+        </div>
+        <div className="card-content">
+          <span className="card-title black-text">{product?.title}</span>
+          <p>{product?.description}</p>
+        </div>
       </div>
-    </div>
+    </Link>
   )
 }

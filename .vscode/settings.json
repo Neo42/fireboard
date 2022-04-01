@@ -4,6 +4,7 @@
     "ide",
     "app",
     "components",
-    "auth"
+    "auth",
+    "crud"
   ]
 }
