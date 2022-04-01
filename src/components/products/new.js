@@ -8,18 +8,19 @@ import {db, storage} from 'firebase-config'
 export function NewProduct() {
   const [title, setTitle] = React.useState('')
   const [description, setDescription] = React.useState('')
-  const [image, setImage] = React.useState(null)
+  const [file, setFile] = React.useState(null)
+  const [previewUrl, setPreviewUrl] = React.useState(null)
   const navigate = useNavigate()
 
   const handleSubmit = (e) => {
-    if (!title || !description || !image) {
+    if (!title || !description || !file) {
       alert('Required field missing.')
       return
     }
     e.preventDefault()
 
-    const storageRef = ref(storage, `/images/${Date.now()}${image.name}`)
-    const uploadImage = uploadBytesResumable(storageRef, image)
+    const storageRef = ref(storage, `/images/${Date.now()}${file.name}`)
+    const uploadImage = uploadBytesResumable(storageRef, file)
 
     uploadImage.on(
       'state_changed',
@@ -63,7 +64,11 @@ export function NewProduct() {
             onChange={(e) => setDescription(e.target.value)}
           />
         </div>
-        <ProductImage setImage={setImage} />
+        <ProductImage
+          setImageFile={setFile}
+          setPreviewUrl={setPreviewUrl}
+          previewUrl={previewUrl}
+        />
         <div className="input-field">
           <button className="btn pink lighten-1">Create Product</button>
         </div>

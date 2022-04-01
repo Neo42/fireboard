@@ -29,11 +29,11 @@ coding challenge.
 - [x] ~~_Sign out button:_~~ [2022-04-01]
   - [x] ~~_Redirects to sign-in page_~~ [2022-04-01]
 - [x] ~~_Responsive page for mobile & desktop_~~ [2022-04-01]
-- [ ] Data fetched from firebase database
-- [ ] CRUD interface with backend data interactions
-  - [ ] title
-  - [ ] description
-  - [ ] image
+- [x] ~~_Data fetched from firebase database_~~ [2022-04-01]
+- [x] ~~_CRUD_~~ [2022-04-01]
+  - [x] ~~_*creation*_~~ [2022-04-01]
+  - [x] ~~_update_~~ [2022-04-01]
+  - [x] ~~_delete_~~ [2022-04-01]
 
 #### Bonus
 

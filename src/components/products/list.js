@@ -9,8 +9,8 @@ export function ProductList() {
 
   React.useEffect(() => {
     const getProducts = async () => {
-      const productRef = collection(db, 'products')
-      const q = query(productRef, orderBy('createdAt', 'desc'))
+      const productsRef = collection(db, 'products')
+      const q = query(productsRef, orderBy('createdAt', 'desc'))
       onSnapshot(q, (snapshot) => {
         const products = snapshot.docs.map((doc) => ({
           ...doc.data(),

@@ -1,8 +1,6 @@
 import React from 'react'
-import M from 'materialize-css'
 
-export function ProductImage({setImage}) {
-  const [imagePreviewUrl, setImagePreviewUrl] = React.useState('')
+export function ProductImage({setImageFile, previewUrl, setPreviewUrl}) {
   const previewRef = React.useRef(null)
 
   const handleImageChange = (e) => {
@@ -10,17 +8,11 @@ export function ProductImage({setImage}) {
     let reader = new FileReader()
     let image = e.target.files[0]
     reader.onloadend = () => {
-      setImage(image)
-      setImagePreviewUrl(reader.result)
+      setImageFile(image)
+      setPreviewUrl(reader.result)
     }
     reader.readAsDataURL(image)
   }
-
-  React.useEffect(() => {
-    if (previewRef) {
-      M.Materialbox.init(previewRef.current)
-    }
-  }, [previewRef])
 
   return (
     <div className="previewComponent">
@@ -38,14 +30,8 @@ export function ProductImage({setImage}) {
         </div>
       </div>
       <div className="imgPreview">
-        {imagePreviewUrl ? (
-          <img
-            src={imagePreviewUrl}
-            ref={previewRef}
-            alt="preview"
-            className="materialboxed"
-            width="250"
-          />
+        {previewUrl ? (
+          <img src={previewUrl} ref={previewRef} alt="previewUrl" width="250" />
         ) : null}
       </div>
     </div>

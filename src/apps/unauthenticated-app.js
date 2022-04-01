@@ -45,6 +45,7 @@ export function UnauthenticatedApp() {
             <input
               type="email"
               id="email"
+              autoComplete="current-username"
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
@@ -54,6 +55,7 @@ export function UnauthenticatedApp() {
               type="password"
               id="password"
               onChange={(e) => setPassword(e.target.value)}
+              autoComplete="current-password"
             />
           </div>
           <div className="input-field">
