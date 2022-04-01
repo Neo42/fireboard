@@ -7,11 +7,11 @@ import {
 } from 'components'
 import {Route, Routes} from 'react-router-dom'
 
-export function AuthenticatedApp({user}) {
+export function AuthenticatedApp() {
   return (
     <>
       <NavBar>
-        <AuthenticatedLinks user={user} />
+        <AuthenticatedLinks />
       </NavBar>
       <Routes>
         <Route path="/" element={<Dashboard />} />

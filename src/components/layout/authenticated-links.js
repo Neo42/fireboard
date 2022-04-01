@@ -1,12 +1,17 @@
+import {useAuthContext} from 'contexts/auth'
 import {auth} from 'firebase-config'
 import {signOut} from 'firebase/auth'
+import React from 'react'
 import {NavLink} from 'react-router-dom'
 
-export function AuthenticatedLinks({user}) {
+export function AuthenticatedLinks() {
+  const {user} = useAuthContext()
+
   const handleLogout = async (e) => {
     e.preventDefault()
     await signOut(auth)
   }
+
   return (
     <ul className="right">
       <li>
@@ -18,9 +23,7 @@ export function AuthenticatedLinks({user}) {
         </NavLink>
       </li>
       <li>
-        <NavLink to="/" className="btn btn-floating pink lighten-1">
-          {user?.email}
-        </NavLink>
+        <NavLink to="/">{user?.email}</NavLink>
       </li>
     </ul>
   )
