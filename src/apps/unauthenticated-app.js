@@ -1,36 +1,34 @@
+import React from 'react'
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from 'firebase/auth'
-import React from 'react'
 import {auth} from 'firebase-config'
+import {useNavigate} from 'react-router-dom'
 
 export function UnauthenticatedApp() {
   const [email, setEmail] = React.useState('')
   const [password, setPassword] = React.useState('')
-  const [isSignup, setIsSignup] = React.useState(true)
   const [error, setError] = React.useState(null)
+  const [isSignup, setIsSignup] = React.useState(true)
+  const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
-    if (!email.length || !password.length) return
     e.preventDefault()
-    if (isSignup) {
-      // signup
-      try {
-        await createUserWithEmailAndPassword(auth, email, password)
-      } catch (error) {
-        setError(error)
-      }
-    } else {
-      // login
-      try {
-        await signInWithEmailAndPassword(auth, email, password)
-      } catch (error) {
-        if (error.message.includes('auth/user-not-found')) {
-          setError(error)
-        }
-      }
+    if (!email.length || !password.length) {
+      alert('Required field missing.')
+      return
     }
+    const userAction = isSignup
+      ? createUserWithEmailAndPassword
+      : signInWithEmailAndPassword
+    // signup
+    try {
+      await userAction(auth, email, password)
+    } catch (error) {
+      setError(error)
+    }
+    navigate('/')
   }
 
   return (
@@ -58,18 +56,16 @@ export function UnauthenticatedApp() {
               autoComplete="current-password"
             />
           </div>
-          <div className="input-field">
-            <button className="btn pink lighten-1" type="submit">
+          <div className="input-field row">
+            <button className="btn lighten-1 col s12 m3" type="submit">
               {isSignup ? 'Sign Up' : 'Log In'}
             </button>
             <button
-              className="btn btn-small secondary right"
+              className="btn btn right col s12 m3"
               type="button"
               onClick={() => setIsSignup(!isSignup)}
             >
-              {isSignup
-                ? 'Already have an account? Log in'
-                : "Don't have an account? Signup"}
+              {isSignup ? 'Log in' : 'Sign up'}
             </button>
           </div>
           <div className="red-text left">{error ? error.message : null}</div>

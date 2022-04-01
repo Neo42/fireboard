@@ -13,11 +13,11 @@ export function NewProduct() {
   const navigate = useNavigate()
 
   const handleSubmit = (e) => {
+    e.preventDefault()
     if (!title || !description || !file) {
       alert('Required field missing.')
       return
     }
-    e.preventDefault()
 
     const storageRef = ref(storage, `/images/${Date.now()}${file.name}`)
     const uploadImage = uploadBytesResumable(storageRef, file)
