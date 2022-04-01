@@ -5,6 +5,7 @@
     "app",
     "components",
     "auth",
-    "crud"
+    "crud",
+    "redux"
   ]
 }

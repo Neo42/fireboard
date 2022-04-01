@@ -2,18 +2,21 @@ import React from 'react'
 import * as ReactDOMClient from 'react-dom/client'
 import {BrowserRouter as Router} from 'react-router-dom'
 import 'materialize-css/dist/css/materialize.min.css'
+
 import './index.css'
 import App from './apps/app'
-import {AuthProvider} from 'contexts/auth'
+
+import {Provider} from 'react-redux'
+import {store} from 'store'
 
 const rootNode = document.getElementById('root')
 const root = ReactDOMClient.createRoot(rootNode)
 root.render(
-  <React.StrictMode>
-    <Router>
-      <AuthProvider>
+  <Provider store={store}>
+    <React.StrictMode>
+      <Router>
         <App />
-      </AuthProvider>
-    </Router>
-  </React.StrictMode>,
+      </Router>
+    </React.StrictMode>
+  </Provider>,
 )

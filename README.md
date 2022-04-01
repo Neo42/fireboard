@@ -9,7 +9,7 @@ coding challenge.
 
 - [x] ~~_React_~~ [2022-03-31]
 - [x] ~~_Firebase realtime database or firestore database_~~ [2022-04-01]
-- [ ] Redux
+- [x] ~~_Redux_~~ [2022-04-02]
 
 ### Features
 
@@ -31,7 +31,7 @@ coding challenge.
 - [x] ~~_Responsive page for mobile & desktop_~~ [2022-04-01]
 - [x] ~~_Data fetched from firebase database_~~ [2022-04-01]
 - [x] ~~_CRUD_~~ [2022-04-01]
-  - [x] ~~_*creation*_~~ [2022-04-01]
+  - [x] ~~_creation_~~ [2022-04-01]
   - [x] ~~_update_~~ [2022-04-01]
   - [x] ~~_delete_~~ [2022-04-01]
 
