@@ -3,6 +3,7 @@
     "docs",
     "ide",
     "app",
-    "components"
+    "components",
+    "auth"
   ]
 }
