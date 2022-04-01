@@ -6,6 +6,7 @@
     "components",
     "auth",
     "crud",
-    "redux"
+    "redux",
+    "ci"
   ]
 }
