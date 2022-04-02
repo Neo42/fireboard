@@ -17,7 +17,7 @@ export function ProductImage({setImageFile, previewUrl, setPreviewUrl}) {
   return (
     <div className="previewComponent">
       <div className="file-field input-field">
-        <div className="btn">
+        <div className="btn black">
           <span>Upload Cover</span>
           <input type="file" onChange={handleImageChange} />
         </div>

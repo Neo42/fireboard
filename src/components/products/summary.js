@@ -14,7 +14,7 @@ export function ProductSummary({product}) {
         </div>
         <div className="card-content">
           <span className="card-title black-text">{product?.title}</span>
-          <p>{product?.description}</p>
+          <p className="black-text">{product?.description}</p>
         </div>
       </div>
     </Link>

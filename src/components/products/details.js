@@ -16,8 +16,8 @@ export function ProductDetails() {
 
   const [title, setTitle] = React.useState('')
   const [description, setDescription] = React.useState('')
+  const [previewUrl, setPreviewUrl] = React.useState('')
   const [file, setFile] = React.useState(null)
-  const [previewUrl, setPreviewUrl] = React.useState(null)
 
   React.useEffect(() => {
     const getProduct = async () => {
@@ -52,15 +52,15 @@ export function ProductDetails() {
 
     const storageRef = ref(storage, `/images/${Date.now()}${file?.name}`)
     const uploadImage = uploadBytesResumable(storageRef, file)
-    uploadImage.on('state_changed', null, console.log, () => {
-      getDownloadURL(uploadImage.snapshot.ref).then((url) => {
-        updateDoc(productRef, {
-          title,
-          description,
-          image: url,
-        }).catch(console.error)
-        navigate('/')
-      })
+
+    uploadImage.on('state_changed', null, console.log, async () => {
+      const url = await getDownloadURL(uploadImage.snapshot.ref)
+      try {
+        updateDoc(productRef, {title, description, image: url})
+      } catch (error) {
+        console.error(error)
+      }
+      navigate('/')
     })
   }
 
@@ -107,13 +107,10 @@ export function ProductDetails() {
           setPreviewUrl={setPreviewUrl}
         />
         <div className="input-field row">
-          <button className="btn pink lighten-1 col s12 m3" type="submit">
+          <button className="btn black col s12 m3" type="submit">
             Update Product
           </button>
-          <button
-            className="btn red darken-3 right col s12 m3"
-            onClick={handleDelete}
-          >
+          <button className="btn black right col s12 m3" onClick={handleDelete}>
             Delete Product
           </button>
         </div>

@@ -18,7 +18,7 @@ export function NavBar() {
   }
 
   return (
-    <nav className="nav-wrapper grey darken-3">
+    <nav className="nav-wrapper black">
       <div className="container">
         <Link to="/" className="brand-logo left">
           Fireboard

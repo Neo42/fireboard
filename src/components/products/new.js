@@ -6,11 +6,12 @@ import {getDownloadURL, ref, uploadBytesResumable} from 'firebase/storage'
 import {db, storage} from 'firebase-config'
 
 export function NewProduct() {
+  const navigate = useNavigate()
+
   const [title, setTitle] = React.useState('')
   const [description, setDescription] = React.useState('')
+  const [previewUrl, setPreviewUrl] = React.useState('')
   const [file, setFile] = React.useState(null)
-  const [previewUrl, setPreviewUrl] = React.useState(null)
-  const navigate = useNavigate()
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -70,9 +71,7 @@ export function NewProduct() {
           previewUrl={previewUrl}
         />
         <div className="input-field row">
-          <button className="btn pink lighten-1 col s12 m3">
-            Create Product
-          </button>
+          <button className="btn black col s12 m3">Create Product</button>
         </div>
       </form>
     </div>

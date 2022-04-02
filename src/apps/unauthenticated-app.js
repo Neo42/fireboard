@@ -71,11 +71,11 @@ export function UnauthenticatedApp() {
             />
           </div>
           <div className="input-field row">
-            <button className="btn lighten-1 col s12 m3" type="submit">
+            <button className="btn black col s12 m3" type="submit">
               {isSignup ? 'Sign Up' : 'Log In'}
             </button>
             <button
-              className="btn btn right col s12 m3"
+              className="btn black right col s12 m3"
               type="button"
               onClick={() => dispatch(toggleIsSignup())}
             >
