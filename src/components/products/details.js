@@ -4,7 +4,6 @@ import {getDownloadURL, ref, uploadBytesResumable} from 'firebase/storage'
 import {useNavigate, useParams} from 'react-router-dom'
 import {ProductImage} from 'components/products/image'
 import {db, storage} from 'firebase-config'
-import {textareaAutoResize} from 'materialize-css'
 
 export function ProductDetails() {
   const {id} = useParams()
@@ -15,12 +14,11 @@ export function ProductDetails() {
   const [previewUrl, setPreviewUrl] = React.useState('')
   const [file, setFile] = React.useState(null)
 
-  const textareaRef = React.useRef(null)
-
   React.useEffect(() => {
     const getProduct = async () => {
       const docRef = doc(db, 'products', id)
       const docSnap = await getDoc(docRef)
+
       if (docSnap.exists()) {
         const {title, description, image} = docSnap.data()
         setTitle(title)
@@ -31,11 +29,7 @@ export function ProductDetails() {
       }
     }
     getProduct()
-
-    if (description) {
-      textareaAutoResize(textareaRef.current)
-    }
-  }, [description, id])
+  }, [id])
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -98,10 +92,9 @@ export function ProductDetails() {
           <label htmlFor="description" className="active">
             Product Description
           </label>
-          <textarea
-            ref={textareaRef}
+          <input
+            type="text"
             id="description"
-            className="materialize-textarea"
             onChange={(e) => setDescription(e.target.value)}
             value={description}
           />
