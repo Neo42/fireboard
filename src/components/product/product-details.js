@@ -2,7 +2,7 @@ import React from 'react'
 import {deleteDoc, doc, getDoc, updateDoc} from 'firebase/firestore'
 import {getDownloadURL, ref, uploadBytesResumable} from 'firebase/storage'
 import {useNavigate, useParams} from 'react-router-dom'
-import {ProductImage} from 'components/products/image'
+import {ProductImage} from './product-image'
 import {db, storage} from 'firebase-config'
 import {useSelector} from 'react-redux'
 

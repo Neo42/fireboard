@@ -1,3 +1,3 @@
-export * from './dashboard'
-export * from './navbar'
 export * from './products'
+export * from './product'
+export * from './navbar'

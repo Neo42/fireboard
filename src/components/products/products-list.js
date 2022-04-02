@@ -1,10 +1,9 @@
 import React from 'react'
 import {collection, onSnapshot, orderBy, query} from 'firebase/firestore'
-import {db} from 'firebase-config'
-import {ProductSummary} from './summary'
-
 import {useDispatch, useSelector} from 'react-redux'
 import {receivedProducts} from 'features/products-slice'
+import {db} from 'firebase-config'
+import {ProductSummary} from '../product/product-summary'
 
 export function ProductList() {
   const dispatch = useDispatch()
