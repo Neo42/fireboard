@@ -31,7 +31,12 @@ export function ProductImage({setImageFile, previewUrl, setPreviewUrl}) {
       </div>
       <div className="imgPreview">
         {previewUrl ? (
-          <img src={previewUrl} ref={previewRef} alt="previewUrl" width="250" />
+          <img
+            src={previewUrl}
+            ref={previewRef}
+            alt="previewUrl"
+            className="responsive-img"
+          />
         ) : null}
       </div>
     </div>

@@ -9,7 +9,7 @@ export function ProductSummary({product}) {
             src={product?.image}
             alt={product?.title}
             style={{objectFit: 'cover'}}
-            height={180}
+            className="responsive-img"
           />
         </div>
         <div className="card-content">
