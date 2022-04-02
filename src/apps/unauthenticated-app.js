@@ -45,9 +45,7 @@ export function UnauthenticatedApp() {
     <div className="App">
       <div className="container">
         <form onSubmit={handleSubmit} className="white">
-          <h5 className="grey-text text-darken-3">
-            {isSignup ? 'Sign Up' : 'Log In'}
-          </h5>
+          <h5>{isSignup ? 'Sign Up' : 'Log In'}</h5>
           <div className="input-field">
             <label htmlFor="email">Email</label>
             <input

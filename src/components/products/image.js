@@ -22,11 +22,7 @@ export function ProductImage({setImageFile, previewUrl, setPreviewUrl}) {
           <input type="file" onChange={handleImageChange} />
         </div>
         <div className="file-path-wrapper">
-          <input
-            className="file-path validate"
-            type="text"
-            onChange={handleImageChange}
-          />
+          <input className="file-path validate" type="text" />
         </div>
       </div>
       <div className="imgPreview">
