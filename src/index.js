@@ -11,6 +11,7 @@ import {store} from 'store'
 
 const rootNode = document.getElementById('root')
 const root = ReactDOMClient.createRoot(rootNode)
+
 root.render(
   <Provider store={store}>
     <React.StrictMode>

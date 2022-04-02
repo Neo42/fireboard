@@ -3,8 +3,7 @@ import {collection, onSnapshot, orderBy, query} from 'firebase/firestore'
 import {db} from 'firebase-config'
 import {ProductSummary} from './summary'
 
-import {useSelector} from 'react-redux'
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import {receivedProducts} from 'features/products-slice'
 
 export function ProductList() {

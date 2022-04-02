@@ -5,28 +5,38 @@ import {
 } from 'firebase/auth'
 import {auth} from 'firebase-config'
 import {useNavigate} from 'react-router-dom'
+import {useDispatch, useSelector} from 'react-redux'
+import {
+  changeUserForm,
+  receivedError,
+  toggleIsSignup,
+} from 'features/auth-slice'
 
 export function UnauthenticatedApp() {
-  const [email, setEmail] = React.useState('')
-  const [password, setPassword] = React.useState('')
-  const [error, setError] = React.useState(null)
-  const [isSignup, setIsSignup] = React.useState(false)
+  const dispatch = useDispatch()
+  const {
+    userForm: {email, password},
+    isSignup,
+    error,
+  } = useSelector((state) => state.auth)
+
   const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     if (!email.length || !password.length) {
-      alert('Required field missing.')
+      dispatch(receivedError({message: 'Required field missing.'}))
       return
     }
+
     const userAction = isSignup
       ? createUserWithEmailAndPassword
       : signInWithEmailAndPassword
-    // signup
+
     try {
       await userAction(auth, email, password)
-    } catch (error) {
-      setError(error)
+    } catch ({message}) {
+      dispatch(receivedError({message}))
     }
     navigate('/')
   }
@@ -44,7 +54,9 @@ export function UnauthenticatedApp() {
               type="email"
               id="email"
               autoComplete="current-username"
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) =>
+                dispatch(changeUserForm({email: e.target.value}))
+              }
             />
           </div>
           <div className="input-field">
@@ -52,7 +64,9 @@ export function UnauthenticatedApp() {
             <input
               type="password"
               id="password"
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) =>
+                dispatch(changeUserForm({password: e.target.value}))
+              }
               autoComplete="current-password"
             />
           </div>
@@ -63,7 +77,7 @@ export function UnauthenticatedApp() {
             <button
               className="btn btn right col s12 m3"
               type="button"
-              onClick={() => setIsSignup(!isSignup)}
+              onClick={() => dispatch(toggleIsSignup())}
             >
               {isSignup ? 'Log in' : 'Sign up'}
             </button>

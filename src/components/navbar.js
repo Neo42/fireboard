@@ -1,11 +1,20 @@
+import {changeUserForm, receivedError} from 'features/auth-slice'
 import {auth} from 'firebase-config'
 import {signOut} from 'firebase/auth'
+import {useDispatch} from 'react-redux'
 import {Link, NavLink} from 'react-router-dom'
 
-export function NavBar({children}) {
+export function NavBar() {
+  const dispatch = useDispatch()
+
   const handleLogout = async (e) => {
     e.preventDefault()
-    await signOut(auth)
+    try {
+      await signOut(auth)
+      dispatch(changeUserForm({email: '', password: ''}))
+    } catch ({message}) {
+      dispatch(receivedError({message}))
+    }
   }
 
   return (
