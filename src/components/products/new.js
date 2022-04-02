@@ -1,11 +1,13 @@
-import {addDoc, collection, Timestamp} from 'firebase/firestore'
 import React from 'react'
 import {useNavigate} from 'react-router-dom'
-import {ProductImage} from 'components'
+import {useSelector} from 'react-redux'
 import {getDownloadURL, ref, uploadBytesResumable} from 'firebase/storage'
+import {addDoc, collection, Timestamp} from 'firebase/firestore'
+import {ProductImage} from 'components'
 import {db, storage} from 'firebase-config'
 
 export function NewProduct() {
+  const {uid} = useSelector((state) => state.auth)
   const navigate = useNavigate()
 
   const [title, setTitle] = React.useState('')
@@ -31,6 +33,7 @@ export function NewProduct() {
           description,
           image: url,
           createdAt: Timestamp.now().toDate(),
+          uid,
         })
           .then(() => navigate('/'))
           .catch(console.error)

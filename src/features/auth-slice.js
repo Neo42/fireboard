@@ -1,6 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit'
 
 const initialState = {
+  uid: null,
   userForm: {
     email: '',
     password: '',
@@ -18,13 +19,17 @@ const authSlice = createSlice({
       state.isSignup = !state.isSignup
     },
     receivedUser(state, action) {
-      state.error = null
-      state.status = 'logged in'
+      state.uid = action.payload
     },
     receivedError(state, action) {
       state.error = action.payload
     },
+    login(state, action) {
+      state.error = null
+      state.status = 'logged in'
+    },
     logout(state, action) {
+      state.uid = null
       state.status = 'logged out'
     },
     changeUserForm(state, action) {
@@ -38,6 +43,7 @@ export const {
   receivedUser,
   receivedError,
   logout,
+  login,
   changeUserForm,
 } = authSlice.actions
 

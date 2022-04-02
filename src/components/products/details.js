@@ -4,32 +4,37 @@ import {getDownloadURL, ref, uploadBytesResumable} from 'firebase/storage'
 import {useNavigate, useParams} from 'react-router-dom'
 import {ProductImage} from 'components/products/image'
 import {db, storage} from 'firebase-config'
+import {useSelector} from 'react-redux'
 
 export function ProductDetails() {
-  const {id} = useParams()
+  const {productId} = useParams()
   const navigate = useNavigate()
+
+  const {uid: userId} = useSelector((state) => state.auth)
 
   const [title, setTitle] = React.useState('')
   const [description, setDescription] = React.useState('')
   const [previewUrl, setPreviewUrl] = React.useState('')
   const [file, setFile] = React.useState(null)
+  const [allowModify, setAllowModify] = React.useState(false)
 
   React.useEffect(() => {
     const getProduct = async () => {
-      const docRef = doc(db, 'products', id)
+      const docRef = doc(db, 'products', productId)
       const docSnap = await getDoc(docRef)
 
       if (docSnap.exists()) {
-        const {title, description, image} = docSnap.data()
+        const {title, description, image, uid} = docSnap.data()
         setTitle(title)
         setDescription(description)
         setPreviewUrl(image)
+        if (userId === uid) setAllowModify(true)
       } else {
         console.log('No such document!')
       }
     }
     getProduct()
-  }, [id])
+  }, [productId, userId])
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -37,7 +42,7 @@ export function ProductDetails() {
       alert('Required field missing.')
       return
     }
-    const productRef = doc(db, 'products', id)
+    const productRef = doc(db, 'products', productId)
 
     updateDoc(productRef, {title, description}).catch(console.error)
 
@@ -61,7 +66,7 @@ export function ProductDetails() {
   }
 
   const handleDelete = async () => {
-    const product = doc(db, `products`, id)
+    const product = doc(db, `products`, productId)
     if (!product) return
 
     try {
@@ -86,6 +91,7 @@ export function ProductDetails() {
             id="text"
             onChange={(e) => setTitle(e.target.value)}
             value={title}
+            disabled={!allowModify}
           />
         </div>
         <div className="input-field">
@@ -97,25 +103,29 @@ export function ProductDetails() {
             id="description"
             onChange={(e) => setDescription(e.target.value)}
             value={description}
+            disabled={!allowModify}
           />
         </div>
         <ProductImage
           setImageFile={setFile}
           previewUrl={previewUrl}
           setPreviewUrl={setPreviewUrl}
+          allowModify={allowModify}
         />
-        <div className="input-field row">
-          <button className="btn black col s12 m3" type="submit">
-            Update Product
-          </button>
-          <button
-            type="button"
-            className="btn black right col s12 m3"
-            onClick={handleDelete}
-          >
-            Delete Product
-          </button>
-        </div>
+        {allowModify ? (
+          <div className="input-field row">
+            <button className="btn black col s12 m3" type="submit">
+              Update Product
+            </button>
+            <button
+              type="button"
+              className="btn black right col s12 m3"
+              onClick={handleDelete}
+            >
+              Delete Product
+            </button>
+          </div>
+        ) : null}
       </form>
     </div>
   )
