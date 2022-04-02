@@ -1,9 +1,10 @@
-import {ProductList} from './products/list'
+import {ProductSearch, ProductList} from 'components/products'
 
 export function Dashboard() {
   return (
     <div className="dashboard container">
-      <div className="row">
+      <div className="col">
+        <ProductSearch />
         <ProductList />
       </div>
     </div>

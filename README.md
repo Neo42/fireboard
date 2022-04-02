@@ -7,34 +7,34 @@ coding challenge.
 
 ### Tech Stack
 
-- [x] ~~_React_~~ [2022-03-31]
-- [x] ~~_Firebase realtime database or firestore database_~~ [2022-04-01]
-- [x] ~~_Redux_~~ [2022-04-02]
+- [x] React [2022-03-31]
+- [x] Firebase realtime database or firestore database [2022-04-01]
+- [x] Redux [2022-04-02]
 
 ### Features
 
 #### Auth
 
-- [x] ~~_Email & password input_~~ [2022-03-31]
-- [x] ~~_Login button_~~ [2022-03-31]
-- [x] ~~_Alert message on login error_~~ [2022-04-01]
-- [x] ~~_Responsive page for mobile & desktop_~~ [2022-03-31]
-- [x] ~~_Redirects to dashboard on login_~~ [2022-04-01]
+- [x] Email & password input [2022-03-31]
+- [x] Login button [2022-03-31]
+- [x] Alert message on login error [2022-04-01]
+- [x] Responsive layout for mobile & desktop [2022-03-31]
+- [x] Redirects to dashboard on login [2022-04-01]
 
 #### Dashboard
 
-- [x] ~~_Product list_~~ [2022-04-01]
-- [x] ~~_Product item_~~ [2022-04-01]
-  - [x] ~~_description, title & image_~~ [2022-04-01]
-- [x] ~~_Sign out button:_~~ [2022-04-01]
-  - [x] ~~_Redirects to sign-in page_~~ [2022-04-01]
-- [x] ~~_Responsive page for mobile & desktop_~~ [2022-04-01]
-- [x] ~~_Data fetched from firebase database_~~ [2022-04-01]
-- [x] ~~_CRUD_~~ [2022-04-01]
-  - [x] ~~_creation_~~ [2022-04-01]
-  - [x] ~~_update_~~ [2022-04-01]
-  - [x] ~~_delete_~~ [2022-04-01]
+- [x] Product list [2022-04-02]
+- [x] Product item [2022-04-01]
+  - [x] description, title & image [2022-04-01]
+- [x] Sign out button [2022-04-01]
+  - [x] Redirects to sign-in page [2022-04-01]
+- [x] Responsive layout for mobile & desktop [2022-04-01]
+- [x] Data fetching from firebase database [2022-04-01]
+- [x] CRUD [2022-04-01]
+  - [x] creation [2022-04-01]
+  - [x] update [2022-04-01]
+  - [x] delete [2022-04-01]
 
 #### Bonus
 
-- [ ] Search bar filtering products from the list
+- [x] Search bar filtering products from the list [2022-04-02]

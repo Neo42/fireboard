@@ -8,7 +8,10 @@ import {receivedProducts} from 'features/products-slice'
 
 export function ProductList() {
   const dispatch = useDispatch()
-  const products = useSelector((state) => state.products.products)
+  const {products, searchInput} = useSelector((state) => state.products)
+  const filteredProducts = products?.filter((product) =>
+    product.title.toLowerCase().includes(searchInput.toLowerCase()),
+  )
 
   React.useEffect(() => {
     const getProducts = async () => {
@@ -29,10 +32,13 @@ export function ProductList() {
   }, [dispatch])
 
   return (
-    <div className="product-list section">
-      {products?.map((product) => (
+    <div className="product-list section row">
+      {filteredProducts?.map((product) => (
         <ProductSummary product={product} key={product.id} />
       ))}
+      {Array.isArray(filteredProducts) && !filteredProducts.length ? (
+        <span>Oops! Found nothing...</span>
+      ) : null}
     </div>
   )
 }
