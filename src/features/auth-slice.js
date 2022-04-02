@@ -16,6 +16,7 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     toggleIsSignup(state, action) {
+      state.error = null
       state.isSignup = !state.isSignup
     },
     receivedUser(state, action) {
@@ -33,6 +34,7 @@ const authSlice = createSlice({
       state.status = 'logged out'
     },
     changeUserForm(state, action) {
+      state.error = null
       state.userForm = {...state.userForm, ...action.payload}
     },
   },

@@ -35,11 +35,11 @@ export function UnauthenticatedApp() {
       : signInWithEmailAndPassword
 
     try {
-      dispatch(changeUserForm({email: '', password: ''}))
       const {
         user: {uid},
       } = await userAction(auth, email, password)
       dispatch(receivedUser(uid))
+      dispatch(changeUserForm({email: '', password: ''}))
     } catch ({message}) {
       dispatch(receivedError({message}))
     }
@@ -60,6 +60,7 @@ export function UnauthenticatedApp() {
               onChange={(e) =>
                 dispatch(changeUserForm({email: e.target.value}))
               }
+              value={email}
             />
           </div>
           <div className="input-field">
@@ -71,6 +72,7 @@ export function UnauthenticatedApp() {
                 dispatch(changeUserForm({password: e.target.value}))
               }
               autoComplete="current-password"
+              value={password}
             />
           </div>
           <div className="input-field row">
