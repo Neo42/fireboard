@@ -17,8 +17,10 @@ export function ProductDetails() {
   const [previewUrl, setPreviewUrl] = React.useState('')
   const [file, setFile] = React.useState(null)
   const [allowModify, setAllowModify] = React.useState(false)
+  const [isLoading, setIsLoading] = React.useState(false)
 
   React.useEffect(() => {
+    setIsLoading(true)
     const getProduct = async () => {
       const docRef = doc(db, 'products', productId)
       const docSnap = await getDoc(docRef)
@@ -29,6 +31,7 @@ export function ProductDetails() {
         setDescription(description)
         setPreviewUrl(image)
         if (userId === uid) setAllowModify(true)
+        setIsLoading(false)
       } else {
         console.log('No such document!')
       }
@@ -80,53 +83,57 @@ export function ProductDetails() {
 
   return (
     <div className="container">
-      <form onSubmit={handleSubmit} className="white">
-        <h5>Product Details</h5>
-        <div className="input-field">
-          <label htmlFor="title" className="active">
-            Title
-          </label>
-          <input
-            type="text"
-            id="text"
-            onChange={(e) => setTitle(e.target.value)}
-            value={title}
-            disabled={!allowModify}
-          />
-        </div>
-        <div className="input-field">
-          <label htmlFor="description" className="active">
-            Product Description
-          </label>
-          <input
-            type="text"
-            id="description"
-            onChange={(e) => setDescription(e.target.value)}
-            value={description}
-            disabled={!allowModify}
-          />
-        </div>
-        <ProductImage
-          setImageFile={setFile}
-          previewUrl={previewUrl}
-          setPreviewUrl={setPreviewUrl}
-          allowModify={allowModify}
-        />
-        {allowModify ? (
-          <div className="input-field row">
-            <button className="btn black col s12 m3" type="submit">
-              Update Product
-            </button>
-            <button
-              type="button"
-              className="btn black right col s12 m3"
-              onClick={handleDelete}
-            >
-              Delete Product
-            </button>
+      {isLoading ? (
+        <p className="center-align">Loading Product...</p>
+      ) : (
+        <form onSubmit={handleSubmit} className="white">
+          <h5>Product Details</h5>
+          <div className="input-field">
+            <label htmlFor="title" className="active">
+              Title
+            </label>
+            <input
+              type="text"
+              id="text"
+              onChange={(e) => setTitle(e.target.value)}
+              value={title}
+              disabled={!allowModify}
+            />
           </div>
-        ) : null}
-      </form>
+          <div className="input-field">
+            <label htmlFor="description" className="active">
+              Product Description
+            </label>
+            <input
+              type="text"
+              id="description"
+              onChange={(e) => setDescription(e.target.value)}
+              value={description}
+              disabled={!allowModify}
+            />
+          </div>
+          <ProductImage
+            setImageFile={setFile}
+            previewUrl={previewUrl}
+            setPreviewUrl={setPreviewUrl}
+            allowModify={allowModify}
+          />
+          {allowModify ? (
+            <div className="input-field row">
+              <button className="btn black col s12 m3" type="submit">
+                Update Product
+              </button>
+              <button
+                type="button"
+                className="btn black right col s12 m3"
+                onClick={handleDelete}
+              >
+                Delete Product
+              </button>
+            </div>
+          ) : null}
+        </form>
+      )}
     </div>
   )
 }
