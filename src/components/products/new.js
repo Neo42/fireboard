@@ -23,24 +23,19 @@ export function NewProduct() {
     const storageRef = ref(storage, `/images/${Date.now()}${file.name}`)
     const uploadImage = uploadBytesResumable(storageRef, file)
 
-    uploadImage.on(
-      'state_changed',
-      (snapshot) => console.log(snapshot.bytesTransferred),
-      console.log,
-      () => {
-        getDownloadURL(uploadImage.snapshot.ref).then((url) => {
-          const productRef = collection(db, 'products')
-          addDoc(productRef, {
-            title,
-            description,
-            image: url,
-            createdAt: Timestamp.now().toDate(),
-          })
-            .then(() => navigate('/'))
-            .catch(console.error)
+    uploadImage.on('state_changed', null, console.error, () => {
+      getDownloadURL(uploadImage.snapshot.ref).then((url) => {
+        const productRef = collection(db, 'products')
+        addDoc(productRef, {
+          title,
+          description,
+          image: url,
+          createdAt: Timestamp.now().toDate(),
         })
-      },
-    )
+          .then(() => navigate('/'))
+          .catch(console.error)
+      })
+    })
   }
 
   return (

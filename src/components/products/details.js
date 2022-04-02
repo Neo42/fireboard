@@ -1,14 +1,10 @@
 import React from 'react'
 import {deleteDoc, doc, getDoc, updateDoc} from 'firebase/firestore'
-import {
-  deleteObject,
-  getDownloadURL,
-  ref,
-  uploadBytesResumable,
-} from 'firebase/storage'
+import {getDownloadURL, ref, uploadBytesResumable} from 'firebase/storage'
 import {useNavigate, useParams} from 'react-router-dom'
 import {ProductImage} from 'components/products/image'
 import {db, storage} from 'firebase-config'
+import {textareaAutoResize} from 'materialize-css'
 
 export function ProductDetails() {
   const {id} = useParams()
@@ -18,6 +14,8 @@ export function ProductDetails() {
   const [description, setDescription] = React.useState('')
   const [previewUrl, setPreviewUrl] = React.useState('')
   const [file, setFile] = React.useState(null)
+
+  const textareaRef = React.useRef(null)
 
   React.useEffect(() => {
     const getProduct = async () => {
@@ -33,7 +31,11 @@ export function ProductDetails() {
       }
     }
     getProduct()
-  }, [id])
+
+    if (description) {
+      textareaAutoResize(textareaRef.current)
+    }
+  }, [description, id])
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -65,11 +67,13 @@ export function ProductDetails() {
   }
 
   const handleDelete = async () => {
+    const product = doc(db, `products`, id)
+    if (!product) return
+
     try {
-      await deleteDoc(doc(db, `products`, id))
-      const storageRef = ref(storage, file)
-      await deleteObject(storageRef)
+      await deleteDoc(product)
       navigate('/')
+      return
     } catch (error) {
       console.error(error)
     }
@@ -95,6 +99,7 @@ export function ProductDetails() {
             Product Description
           </label>
           <textarea
+            ref={textareaRef}
             id="description"
             className="materialize-textarea"
             onChange={(e) => setDescription(e.target.value)}
@@ -110,7 +115,11 @@ export function ProductDetails() {
           <button className="btn black col s12 m3" type="submit">
             Update Product
           </button>
-          <button className="btn black right col s12 m3" onClick={handleDelete}>
+          <button
+            type="button"
+            className="btn black right col s12 m3"
+            onClick={handleDelete}
+          >
             Delete Product
           </button>
         </div>
