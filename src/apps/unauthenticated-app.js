@@ -78,11 +78,11 @@ export function UnauthenticatedApp() {
               {isSignup ? 'Sign Up' : 'Log In'}
             </button>
             <button
-              className="btn black right col s12 m3"
+              className="btn black right col s12 m5"
               type="button"
               onClick={() => dispatch(toggleIsSignup())}
             >
-              {isSignup ? 'Log in' : 'Sign up'}
+              {isSignup ? 'Have an account?' : `Don't have an account?`}
             </button>
           </div>
           <div className="red-text left">{error ? error.message : null}</div>
