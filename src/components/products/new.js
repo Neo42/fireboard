@@ -69,8 +69,10 @@ export function NewProduct() {
           setPreviewUrl={setPreviewUrl}
           previewUrl={previewUrl}
         />
-        <div className="input-field">
-          <button className="btn pink lighten-1">Create Product</button>
+        <div className="input-field row">
+          <button className="btn pink lighten-1 col s12 m3">
+            Create Product
+          </button>
         </div>
       </form>
     </div>
