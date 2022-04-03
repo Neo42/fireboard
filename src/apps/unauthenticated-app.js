@@ -25,10 +25,6 @@ export function UnauthenticatedApp() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    if (!email.length || !password.length) {
-      dispatch(receivedError({message: 'Required field missing.'}))
-      return
-    }
 
     const userAction = isSignup
       ? createUserWithEmailAndPassword
@@ -56,6 +52,7 @@ export function UnauthenticatedApp() {
             <input
               type="email"
               id="email"
+              required
               autoComplete="current-username"
               onChange={(e) =>
                 dispatch(changeUserForm({email: e.target.value}))
@@ -68,6 +65,7 @@ export function UnauthenticatedApp() {
             <input
               type="password"
               id="password"
+              required
               onChange={(e) =>
                 dispatch(changeUserForm({password: e.target.value}))
               }

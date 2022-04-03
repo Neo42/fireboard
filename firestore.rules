@@ -3,7 +3,7 @@ service cloud.firestore {
   match /databases/{database}/documents {
     match /products/{productId} {
       allow read: if isLoggedIn();
-      allow create, update, delete: if isLoggedIn() && isValidProduct();
+      allow create, update, delete: if isLoggedIn() && isProductOwner();
     }
   }
 }
@@ -12,6 +12,6 @@ function isLoggedIn(){
   return request.auth != null;
 }
 
-function isValidProduct(){
+function isProductOwner(){
   return request.resource.data.uid == request.auth.uid
 }
