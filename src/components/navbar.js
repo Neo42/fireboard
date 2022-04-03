@@ -27,7 +27,7 @@ export function NavBar() {
     <header className="bg-black sm:flex sm:justify-between sm:items-center sm:px-4 sm:py-3">
       <div className="flex items-center justify-between px-4 py-3 sm:p-0">
         <div>
-          <Link className="block text-3xl text-white" to="/">
+          <Link className="block text-3xl text-yellow-300" to="/">
             Fireboard
           </Link>
         </div>
@@ -55,13 +55,13 @@ export function NavBar() {
           } px-2 py-2 pb-4 sm:flex sm:p-0`}
         >
           <NavLink
-            className="block px-2 py-1 font-semibold text-white rounded hover:bg-gray-800 sm:mt-0 sm:ml-2"
+            className="block px-2 py-1 font-semibold text-white rounded hover:bg-gray-900 sm:mt-0 sm:ml-2"
             to="/new"
           >
             New Product
           </NavLink>
           <NavLink
-            className="block px-2 py-1 mt-1 font-semibold text-white rounded hover:bg-gray-800 sm:mt-0 sm:ml-2"
+            className="block px-2 py-1 mt-1 font-semibold text-white rounded hover:bg-gray-900 sm:mt-0 sm:ml-2"
             to="/"
             onClick={handleLogout}
           >
