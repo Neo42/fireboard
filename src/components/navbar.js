@@ -19,13 +19,11 @@ export function NavBar() {
   }
 
   return (
-    <nav className="nav-wrapper black">
-      <div className="container">
-        <Link to="/" className="brand-logo left">
-          Fireboard
-        </Link>
+    <nav>
+      <div>
+        <Link to="/">Fireboard</Link>
         {status === 'logged in' ? (
-          <ul className="mobile-nav right">
+          <ul>
             <li>
               <NavLink to="/new">New Product</NavLink>
             </li>

@@ -19,15 +19,10 @@ export function ProductSearch() {
   }, [searchInput])
 
   return (
-    <div className="center">
-      <i className="material-icons prefix">search</i>
-      <div className="input-field inline row">
-        <input
-          type="text"
-          className="col s12"
-          ref={searchRef}
-          onChange={handleChange}
-        />
+    <div>
+      <i>search</i>
+      <div>
+        <input type="text" ref={searchRef} onChange={handleChange} />
       </div>
     </div>
   )

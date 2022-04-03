@@ -32,9 +32,9 @@ export function ProductList() {
   }, [dispatch])
 
   return (
-    <div className="product-list section row">
+    <div>
       {isLoading ? (
-        <p className="center-align">Loading Products...</p>
+        <p>Loading Products...</p>
       ) : foundNone ? (
         <span>Oops! Found nothing...</span>
       ) : (

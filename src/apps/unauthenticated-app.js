@@ -47,49 +47,39 @@ export function UnauthenticatedApp() {
   }
 
   return (
-    <div className="App">
-      <div className="container">
-        <form onSubmit={handleSubmit} className="white">
-          <h5>{isSignup ? 'Sign Up' : 'Log In'}</h5>
-          <div className="input-field">
-            <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              id="email"
-              autoComplete="current-username"
-              onChange={(e) =>
-                dispatch(changeUserForm({email: e.target.value}))
-              }
-              value={email}
-            />
-          </div>
-          <div className="input-field">
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              id="password"
-              onChange={(e) =>
-                dispatch(changeUserForm({password: e.target.value}))
-              }
-              autoComplete="current-password"
-              value={password}
-            />
-          </div>
-          <div className="input-field row">
-            <button className="btn black col s12 m3" type="submit">
-              {isSignup ? 'Sign Up' : 'Log In'}
-            </button>
-            <button
-              className="btn black right col s12 m5"
-              type="button"
-              onClick={() => dispatch(toggleIsSignup())}
-            >
-              {isSignup ? 'Have an account?' : `Don't have an account?`}
-            </button>
-          </div>
-          <div className="red-text left">{error ? error.message : null}</div>
-        </form>
-      </div>
+    <div>
+      <form onSubmit={handleSubmit}>
+        <h5>{isSignup ? 'Sign Up' : 'Log In'}</h5>
+        <div>
+          <label htmlFor="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            autoComplete="current-username"
+            onChange={(e) => dispatch(changeUserForm({email: e.target.value}))}
+            value={email}
+          />
+        </div>
+        <div>
+          <label htmlFor="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            onChange={(e) =>
+              dispatch(changeUserForm({password: e.target.value}))
+            }
+            autoComplete="current-password"
+            value={password}
+          />
+        </div>
+        <div>
+          <button type="submit">{isSignup ? 'Sign Up' : 'Log In'}</button>
+          <button type="button" onClick={() => dispatch(toggleIsSignup())}>
+            {isSignup ? 'Have an account?' : `Don't have an account?`}
+          </button>
+        </div>
+        <div>{error ? error.message : null}</div>
+      </form>
     </div>
   )
 }

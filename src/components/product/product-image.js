@@ -20,26 +20,21 @@ export function ProductImage({
   }
 
   return (
-    <div className="previewComponent">
+    <div>
       {allowModify ? (
-        <div className="file-field input-field">
-          <div className="btn black">
+        <div>
+          <div>
             <span>Upload Cover</span>
             <input type="file" onChange={handleImageChange} />
           </div>
-          <div className="file-path-wrapper">
-            <input className="file-path validate" type="text" />
+          <div>
+            <input />
           </div>
         </div>
       ) : null}
-      <div className="imgPreview">
+      <div>
         {previewUrl ? (
-          <img
-            src={previewUrl}
-            ref={previewRef}
-            alt="previewUrl"
-            className="responsive-img"
-          />
+          <img src={previewUrl} ref={previewRef} alt="previewUrl" />
         ) : null}
       </div>
     </div>

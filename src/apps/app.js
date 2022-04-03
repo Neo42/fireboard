@@ -20,7 +20,7 @@ function App() {
     <div className="App">
       <NavBar />
       {status === 'loading' ? (
-        <p className="center-align">Checking user...</p>
+        <p>Checking user...</p>
       ) : status === 'logged in' ? (
         <AuthenticatedApp />
       ) : (

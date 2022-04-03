@@ -3,8 +3,8 @@ import {ProductSearch} from './products-search'
 
 export function Dashboard() {
   return (
-    <div className="dashboard container">
-      <div className="col">
+    <div>
+      <div>
         <ProductSearch />
         <ProductList />
       </div>

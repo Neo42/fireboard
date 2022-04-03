@@ -82,16 +82,14 @@ export function ProductDetails() {
   }
 
   return (
-    <div className="container">
+    <div>
       {isLoading ? (
-        <p className="center-align">Loading Product...</p>
+        <p>Loading Product...</p>
       ) : (
-        <form onSubmit={handleSubmit} className="white">
+        <form onSubmit={handleSubmit}>
           <h5>Product Details</h5>
-          <div className="input-field">
-            <label htmlFor="title" className="active">
-              Title
-            </label>
+          <div>
+            <label htmlFor="title">Title</label>
             <input
               type="text"
               id="text"
@@ -100,10 +98,8 @@ export function ProductDetails() {
               disabled={!allowModify}
             />
           </div>
-          <div className="input-field">
-            <label htmlFor="description" className="active">
-              Product Description
-            </label>
+          <div>
+            <label htmlFor="description">Product Description</label>
             <input
               type="text"
               id="description"
@@ -119,15 +115,9 @@ export function ProductDetails() {
             allowModify={allowModify}
           />
           {allowModify ? (
-            <div className="input-field row">
-              <button className="btn black col s12 m3" type="submit">
-                Update Product
-              </button>
-              <button
-                type="button"
-                className="btn black right col s12 m3"
-                onClick={handleDelete}
-              >
+            <div>
+              <button>Update Product</button>
+              <button type="button" onClick={handleDelete}>
                 Delete Product
               </button>
             </div>

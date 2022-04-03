@@ -42,10 +42,10 @@ export function NewProduct() {
   }
 
   return (
-    <div className="container">
-      <form onSubmit={handleSubmit} className="white">
+    <div>
+      <form onSubmit={handleSubmit}>
         <h5>New Product</h5>
-        <div className="input-field">
+        <div>
           <label htmlFor="title">Title</label>
           <input
             type="text"
@@ -54,11 +54,10 @@ export function NewProduct() {
             onChange={(e) => setTitle(e.target.value)}
           />
         </div>
-        <div className="input-field">
+        <div>
           <label htmlFor="description">Product Description</label>
           <textarea
             id="description"
-            className="materialize-textarea"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           />
@@ -68,8 +67,8 @@ export function NewProduct() {
           setPreviewUrl={setPreviewUrl}
           previewUrl={previewUrl}
         />
-        <div className="input-field row">
-          <button className="btn black col s12 m3">Create Product</button>
+        <div>
+          <button>Create Product</button>
         </div>
       </form>
     </div>
