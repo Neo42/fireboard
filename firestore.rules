@@ -2,16 +2,9 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
     match /products/{productId} {
-      allow read: if isLoggedIn();
-      allow create, update, delete: if isLoggedIn() && isProductOwner();
+      allow read: if true
+      allow create: if request.auth.uid == request.resource.data.uid;
+      allow update, delete: if request.auth.uid == resource.data.uid;
     }
   }
-}
-
-function isLoggedIn(){
-  return request.auth != null;
-}
-
-function isProductOwner(){
-  return request.resource.data.uid == request.auth.uid
 }

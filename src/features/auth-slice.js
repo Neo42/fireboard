@@ -1,7 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit'
 
 const initialState = {
-  uid: null,
   userForm: {
     email: '',
     password: '',
@@ -19,9 +18,6 @@ const authSlice = createSlice({
       state.error = null
       state.isSignup = !state.isSignup
     },
-    receivedUser(state, action) {
-      state.uid = action.payload
-    },
     receivedError(state, action) {
       state.error = action.payload
     },
@@ -30,7 +26,6 @@ const authSlice = createSlice({
       state.status = 'logged in'
     },
     logout(state, action) {
-      state.uid = null
       state.status = 'logged out'
     },
     changeUserForm(state, action) {
@@ -40,13 +35,7 @@ const authSlice = createSlice({
   },
 })
 
-export const {
-  toggleIsSignup,
-  receivedUser,
-  receivedError,
-  logout,
-  login,
-  changeUserForm,
-} = authSlice.actions
+export const {toggleIsSignup, receivedError, logout, login, changeUserForm} =
+  authSlice.actions
 
 export default authSlice.reducer

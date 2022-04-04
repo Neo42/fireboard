@@ -3,14 +3,11 @@ import {deleteDoc, doc, getDoc, updateDoc} from 'firebase/firestore'
 import {getDownloadURL, ref, uploadBytesResumable} from 'firebase/storage'
 import {useNavigate, useParams} from 'react-router-dom'
 import {ProductImage} from './product-image'
-import {db, storage} from 'firebase-config'
-import {useSelector} from 'react-redux'
+import {auth, db, storage} from 'firebase-config'
 
 export function ProductDetails() {
   const {productId} = useParams()
   const navigate = useNavigate()
-
-  const {uid: userId} = useSelector((state) => state.auth)
 
   const [title, setTitle] = React.useState('')
   const [description, setDescription] = React.useState('')
@@ -30,14 +27,14 @@ export function ProductDetails() {
         setTitle(title)
         setDescription(description)
         setPreviewUrl(image)
-        if (userId === uid) setAllowModify(true)
+        if (auth.currentUser.uid === uid) setAllowModify(true)
         setIsLoading(false)
       } else {
         console.log('No such document!')
       }
     }
     getProduct()
-  }, [productId, userId])
+  }, [productId])
 
   const handleSubmit = (e) => {
     e.preventDefault()

@@ -9,7 +9,6 @@ import {useDispatch, useSelector} from 'react-redux'
 import {
   changeUserForm,
   receivedError,
-  receivedUser,
   toggleIsSignup,
 } from 'features/auth-slice'
 
@@ -31,10 +30,7 @@ export function UnauthenticatedApp() {
       : signInWithEmailAndPassword
 
     try {
-      const {
-        user: {uid},
-      } = await userAction(auth, email, password)
-      dispatch(receivedUser(uid))
+      await userAction(auth, email, password)
       dispatch(changeUserForm({email: '', password: ''}))
     } catch ({message}) {
       dispatch(receivedError({message}))
